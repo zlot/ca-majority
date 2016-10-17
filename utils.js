@@ -1,4 +1,4 @@
-//module 'utils.js'
+/* module 'utils.js' */
 
 var utils = {};
 
