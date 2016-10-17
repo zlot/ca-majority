@@ -3,7 +3,6 @@
 var utils = require('./utils.js');
 
 var canvas = document.createElement('canvas');
-
 var ctx = canvas.getContext('2d');
 ctx.canvas.width  = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
@@ -21,8 +20,6 @@ var state;
 
 init();
 step();
-
-// window.requestAnimationFrame(step);
 
 function init() {
   time = 0;
