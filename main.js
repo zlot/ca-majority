@@ -50,11 +50,11 @@ function step() {
         for(let dy=-r; dy<r+1; dy++) {
           let col = (y+dy) % height;
           let row = (x+dx) % width;
-          if(col === -1) {
-            col = height-1;
+          if(Math.sign(col) === -1) {
+            col = height+col;
           }
-          if(row === -1) {
-            row = width-1;
+          if(Math.sign(row) === -1) {
+            row = width+col;
           }
           let s = config[col][row];
           counts[s] += 1;
