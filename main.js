@@ -1,6 +1,7 @@
 'use strict';
 
 var utils = require('./utils.js');
+const Color = require('color-js');
 
 var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');
@@ -33,7 +34,15 @@ function init() {
 }
 
 function draw() {
-  console.table(config);
+  let step = 10;
+  let cellSize = 5;
+  for(let y=0; y<height; y++) {
+    for(let x=0; x<width; x++) {
+      let fillStyle = Color('#ff0000').shiftHue(config[y][x] * Math.floor(360/numOfStates));
+      ctx.fillStyle = fillStyle;
+      ctx.fillRect(x*step, y*step, cellSize, cellSize);
+    }
+  }
 }
 
 function step() {
