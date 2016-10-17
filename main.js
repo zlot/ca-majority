@@ -5,6 +5,8 @@ var utils = require('./utils.js');
 var canvas = document.createElement('canvas');
 
 var ctx = canvas.getContext('2d');
+ctx.canvas.width  = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
 
 var width = 8;
 var height = 8;
