@@ -1,0 +1,17 @@
+{
+  "name": "ca-majority",
+  "version": "0.0.0",
+  "description": "CA-majority rule implemented in canvas.",
+  "main": "main.js",
+  "dependencies": {
+    "beefy": "^2.1.6",
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "author": "Mark C Mitchell",
+  "license": "ISC"
+}
