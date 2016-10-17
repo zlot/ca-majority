@@ -1,0 +1,82 @@
+'use strict';
+
+var utils = require('./utils.js');
+
+var canvas = document.createElement('canvas');
+
+var ctx = canvas.getContext('2d');
+
+var width = 8;
+var height = 8;
+var numOfStates = 7;
+var r = 1;
+
+var time;
+var config = utils.createMatrix(height, width, 0);
+var nextConfig = utils.createMatrix(height, width, 0);
+
+var state;
+
+init();
+step();
+
+// window.requestAnimationFrame(step);
+
+function init() {
+  time = 0;
+
+  for(let y=0; y<height; y++) {
+    for(let x=0; x<width; x++) {
+      state = utils.getRandomIntInclusive(0, numOfStates-1);
+      config[y][x] = state;
+    }
+  }
+}
+
+function draw() {
+  console.table(config);
+}
+
+function step() {
+  time++;
+
+  for(let x=0; x<width; x++) {
+    for(let y=0; y<height; y++) {
+      state = config[y][x];
+      let counts = new Array(numOfStates).fill(0);
+      for(let dx=-r; dx<r+1; dx++) {
+        for(let dy=-r; dy<r+1; dy++) {
+          let col = (y+dy) % height;
+          let row = (x+dx) % width;
+          if(col === -1) {
+            col = height-1;
+          }
+          if(row === -1) {
+            row = width-1;
+          }
+          let s = config[col][row];
+          counts[s] += 1;
+        }
+      }
+      var maxCount = Math.max(...counts);
+
+      var maxStates = [];
+
+      for(var i=0; i<numOfStates; i++) {
+        if(counts[i] === maxCount) {
+          maxStates.push(i);
+        }
+      }
+      state = maxStates[Math.floor(Math.random()*maxStates.length)];
+
+      nextConfig[y][x] = state;
+    }
+  }
+  var temp = config;
+  config = nextConfig;
+  nextConfig = temp;
+  draw();
+  window.requestAnimationFrame(step);
+}
+
+document.body.appendChild(canvas);
