@@ -7,11 +7,13 @@ var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');
 ctx.canvas.width  = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
+// ctx.fillStyle = '#0066cc';
+// ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-var width = 8;
-var height = 8;
-var numOfStates = 7;
-var r = 1;
+var width = 80*2;
+var height = 80*2;
+var numOfStates = 12;
+var r = 2;
 
 var time;
 var config = utils.createMatrix(height, width, 0);
@@ -34,8 +36,8 @@ function init() {
 }
 
 function draw() {
-  let step = 10;
-  let cellSize = 5;
+  let step = 2;
+  let cellSize = 2;
   for(let y=0; y<height; y++) {
     for(let x=0; x<width; x++) {
       let fillStyle = Color('#ff0000').shiftHue(config[y][x] * Math.floor(360/numOfStates));
@@ -47,6 +49,7 @@ function draw() {
 
 function step() {
   time++;
+  console.log('time: ', time);
 
   for(let x=0; x<width; x++) {
     for(let y=0; y<height; y++) {
@@ -75,6 +78,7 @@ function step() {
           maxStates.push(i);
         }
       }
+      console.log(maxStates);
       state = maxStates[Math.floor(Math.random()*maxStates.length)];
 
       nextConfig[y][x] = state;
@@ -84,7 +88,14 @@ function step() {
   config = nextConfig;
   nextConfig = temp;
   draw();
-  window.requestAnimationFrame(step);
+  if(time < 15) {
+    setTimeout(() => {
+      window.requestAnimationFrame(step);
+    }, 100);
+  } else {
+    console.log('%cSTOPPED', 'font-size: 24px; text-decoration: underline; color: blue');
+  }
+
 }
 
 document.body.appendChild(canvas);

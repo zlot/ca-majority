@@ -1,7 +1,7 @@
 const budo = require('budo')
 const babelify = require('babelify')
 
-budo('./main.js', {
+budo('./index.js', {
   live: true,
   port: 8000,
   browserify: {

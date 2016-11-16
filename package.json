@@ -2,7 +2,7 @@
   "name": "ca-majority",
   "version": "0.0.0",
   "description": "CA-majority rule implemented in canvas.",
-  "main": "main.js",
+  "main": "index.js",
   "dependencies": {
     "chai": "^3.5.0",
     "color-js": "^1.0.3",
