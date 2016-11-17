@@ -2,18 +2,9 @@ let config, nextConfig, width, height, state, numOfStates, r, time;
 
 onmessage = function computeStep(e) {
   if(e.data.init) {
-    config = e.data.config;
-    nextConfig = e.data.nextConfig;
-    width = e.data.width;
-    height = e.data.height;
-    state = e.data.state;
-    numOfStates = e.data.numOfStates;
-    r = e.data.r;
-    time = e.data.time;
+    ({config, nextConfig, width, height, state, numOfStates, r, time} = e.data);
   }
 
-  let data = e.data;
-  // worker does computation
   for(let x=0; x<width; x++) {
     for(let y=0; y<height; y++) {
       state = config[y][x];
