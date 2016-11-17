@@ -1,5 +1,6 @@
 var expect = require('chai').expect;
-var utils = require('./../utils.js');
+import utils from './../utils';
+
 
 describe('utils.getRandomIntInclusive', function() {
 
