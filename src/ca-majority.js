@@ -21,7 +21,7 @@ export default class CaMajority {
     console.time('compute');
     console.log('%cStarted timer', 'font-size: 12px; text-decoration: underline; color: green');
 
-    this.initConfig();
+    this._initConfig();
 
     this.worker = new Worker('src/compute-step.js');
     this.worker.postMessage({
@@ -43,7 +43,7 @@ export default class CaMajority {
     document.body.appendChild(this.canvas);
   }
 
-  initConfig() {
+  _initConfig() {
     this.config = utils.createMatrix(this.height, this.width, 0);
     this.nextConfig = utils.createMatrix(this.height, this.width, 0);
     this.time = 0;
