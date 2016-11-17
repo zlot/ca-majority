@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "node serve.js",
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha --compilers js:babel-core/register --reporter spec"
   },
   "author": "Mark C Mitchell",
   "license": "ISC"
