@@ -4,8 +4,8 @@ import dat from 'dat-gui';
 
 import CaMajority from './ca-majority';
 
-let x = new CaMajority(64,64);
-x.step();
+let x = new CaMajority(512,128,12,2);
+x.run();
 
 const gui = new dat.gui.GUI();
 var obj = {
