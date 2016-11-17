@@ -4,7 +4,12 @@ import dat from 'dat-gui';
 
 import CaMajority from './ca-majority';
 
-let x = new CaMajority(512,128,12,2);
+let x = new CaMajority({
+  width: 256,
+  height: 128,
+  numOfStates: 12,
+  cellSize: 2
+});
 x.run();
 
 const gui = new dat.gui.GUI();
