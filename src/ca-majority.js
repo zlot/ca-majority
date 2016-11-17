@@ -3,7 +3,7 @@ import Color from 'color-js';
 
 export default class CaMajority {
 
-  constructor(width=8, height=8, numOfStates=12, r=2, cellSize=1) {
+  constructor(width=8, height=8, numOfStates=12, cellSize=1, r=2) {
     this.width = width;
     this.height = height;
     this.numOfStates = numOfStates;
