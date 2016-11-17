@@ -1,7 +1,39 @@
 'use strict';
 
+import dat from 'dat-gui';
 import utils from './utils';
+
 const Color = require('color-js');
+
+
+const gui = new dat.gui.GUI();
+var obj = {
+    message: 'Hello World',
+    displayOutline: false,
+    maxSize: 6.0,
+    speed: 5,
+    height: 10,
+    noiseStrength: 10.2,
+    growthSpeed: 0.2,
+    type: 'three',
+    restart: function () {
+      alert('restart!');
+    },
+    color0: "#ffae23", // CSS string
+    color1: [ 0, 128, 255 ], // RGB array
+    color2: [ 0, 128, 255, 0.3 ], // RGB with alpha
+    color3: { h: 350, s: 0.9, v: 0.3 } // Hue, saturation, value
+};
+gui.remember(obj);
+gui.add(obj, 'message');
+gui.add(obj, 'displayOutline');
+gui.add(obj, 'restart');
+let colorFolder = gui.addFolder('colors');
+colorFolder.addColor(obj, 'color0');
+colorFolder.addColor(obj, 'color1');
+colorFolder.addColor(obj, 'color2');
+colorFolder.addColor(obj, 'color3');
+
 
 var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');
@@ -10,8 +42,8 @@ ctx.canvas.height = window.innerHeight;
 // ctx.fillStyle = '#0066cc';
 // ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-var width = 80*2;
-var height = 80*2;
+var width = 8*2;
+var height = 8*2;
 var numOfStates = 12;
 var r = 2;
 
@@ -49,7 +81,7 @@ function draw() {
 
 function step() {
   time++;
-  console.log('time: ', time);
+  // console.log('time: ', time);
 
   for(let x=0; x<width; x++) {
     for(let y=0; y<height; y++) {
@@ -78,7 +110,7 @@ function step() {
           maxStates.push(i);
         }
       }
-      console.log(maxStates);
+      // console.log(maxStates);
       state = maxStates[Math.floor(Math.random()*maxStates.length)];
 
       nextConfig[y][x] = state;
