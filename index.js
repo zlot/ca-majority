@@ -1,6 +1,6 @@
 'use strict';
 
-var utils = require('./utils.js');
+import utils from './utils';
 const Color = require('color-js');
 
 var canvas = document.createElement('canvas');
