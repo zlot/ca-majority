@@ -15,8 +15,21 @@ export default class CaMajority {
     console.time('compute');
     console.log('%cStarted timer', 'font-size: 12px; text-decoration: underline; color: green');
 
-    this.worker = new Worker('src/compute-step.js');
     this.initConfig();
+
+    this.worker = new Worker('src/compute-step.js');
+    this.worker.postMessage({
+      init: true,
+      config: this.config,
+      nextConfig: this.nextConfig,
+      width: this.width,
+      height: this.height,
+      state: this.state,
+      numOfStates: this.numOfStates,
+      r: this.r,
+      time: this.time
+    })
+
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
     this.ctx.canvas.width = window.innerWidth;
@@ -39,18 +52,9 @@ export default class CaMajority {
 
   run() {
     this.worker.onmessage = function workerMessage(e) {
-      // receive result as a config[y][x] matrix
-      // place into this.config and call render?
       this.time = e.data.time;
-      this.nextConfig = e.data.nextConfig;
       this.config = e.data.config;
-      // how necessary is the following?
-      let temp = this.config;
-      this.config = this.nextConfig;
-      this.nextConfig = temp;
-
       this.render();
-
       if(this.time < 8) {
         console.log('time: ', this.time);
         window.requestAnimationFrame(this.step.bind(this));
@@ -59,21 +63,10 @@ export default class CaMajority {
         console.timeEnd('compute');
       }
     }.bind(this);
-
-    this.step();
   }
 
   step() {
-    this.worker.postMessage({
-      config: this.config,
-      nextConfig: this.nextConfig,
-      width: this.width,
-      height: this.height,
-      state: this.state,
-      numOfStates: this.numOfStates,
-      r: this.r,
-      time: this.time
-    });
+    this.worker.postMessage({});
   }
 
 
