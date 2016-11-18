@@ -37,10 +37,10 @@ var obj = {
     color3: { h: 350, s: 0.9, v: 0.3 } // Hue, saturation, value
 };
 gui.remember(obj);
-gui.add(obj, 'width');
-gui.add(obj, 'height');
-gui.add(obj, 'numOfStates');
-gui.add(obj, 'cellSize');
+gui.add(obj, 'width').min(0);
+gui.add(obj, 'height').min(0);
+gui.add(obj, 'numOfStates').min(2);
+gui.add(obj, 'cellSize').min(1);
 gui.add(obj, 'restart');
 gui.add(obj, 'destroy');
 let colorFolder = gui.addFolder('colors');
