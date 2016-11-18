@@ -85,4 +85,8 @@ export default class CaMajority {
       }
     }
   }
+
+  destroy() {
+    document.body.removeChild(this.canvas);
+  }
 }

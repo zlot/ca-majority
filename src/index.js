@@ -14,16 +14,19 @@ x.run();
 
 const gui = new dat.gui.GUI();
 var obj = {
-    message: 'Hello World',
-    displayOutline: false,
-    maxSize: 6.0,
-    speed: 5,
-    height: 10,
-    noiseStrength: 10.2,
-    growthSpeed: 0.2,
-    type: 'three',
+    width: 256,
+    height: 128,
+    numOfStates: 12,
+    cellSize: 2,
     restart: function () {
-      alert('restart!');
+      x.destroy();
+      x = new CaMajority({
+        width: this.width,
+        height: this.height,
+        numOfStates: this.numOfStates,
+        cellSize: this.cellSize
+      });
+      x.run();
     },
     color0: "#ffae23", // CSS string
     color1: [ 0, 128, 255 ], // RGB array
@@ -31,8 +34,10 @@ var obj = {
     color3: { h: 350, s: 0.9, v: 0.3 } // Hue, saturation, value
 };
 gui.remember(obj);
-gui.add(obj, 'message');
-gui.add(obj, 'displayOutline');
+gui.add(obj, 'width');
+gui.add(obj, 'height');
+gui.add(obj, 'numOfStates');
+gui.add(obj, 'cellSize');
 gui.add(obj, 'restart');
 let colorFolder = gui.addFolder('colors');
 colorFolder.addColor(obj, 'color0');
