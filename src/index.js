@@ -13,6 +13,9 @@ let x = new CaMajority({
 x.run();
 
 const gui = new dat.gui.GUI();
+
+let colors = [];
+
 var obj = {
     width: 256,
     height: 128,
@@ -31,10 +34,13 @@ var obj = {
     destroy: function() {
       x.destroy();
     },
-    color0: "#ffae23", // CSS string
-    color1: [ 0, 128, 255 ], // RGB array
-    color2: [ 0, 128, 255, 0.3 ], // RGB with alpha
-    color3: { h: 350, s: 0.9, v: 0.3 } // Hue, saturation, value
+    chooseColors: function() {
+      removeFolders();
+      for(let i=0; i<this.numOfStates; i++) {
+        colors.push(colorFolder.addColor(this, 'color'));
+      }
+    },
+    color: [0, 200, 200], // RGB array
 };
 gui.remember(obj);
 gui.add(obj, 'width').min(0);
@@ -43,8 +49,12 @@ gui.add(obj, 'numOfStates').min(2);
 gui.add(obj, 'cellSize').min(1);
 gui.add(obj, 'restart');
 gui.add(obj, 'destroy');
+gui.add(obj, 'chooseColors');
 let colorFolder = gui.addFolder('colors');
-colorFolder.addColor(obj, 'color0');
-colorFolder.addColor(obj, 'color1');
-colorFolder.addColor(obj, 'color2');
-colorFolder.addColor(obj, 'color3');
+
+let removeFolders = function() {
+  colors.forEach(color => {
+    colorFolder.remove(color);
+  });
+  colors = [];
+}
