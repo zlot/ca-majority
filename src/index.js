@@ -18,8 +18,8 @@ var obj = {
     height: 128,
     numOfStates: 12,
     cellSize: 2,
-    restart: function () {
-      x.destroy();
+    restart: function() {
+      this.destroy();
       x = new CaMajority({
         width: this.width,
         height: this.height,
@@ -27,6 +27,9 @@ var obj = {
         cellSize: this.cellSize
       });
       x.run();
+    },
+    destroy: function() {
+      x.destroy();
     },
     color0: "#ffae23", // CSS string
     color1: [ 0, 128, 255 ], // RGB array
@@ -39,6 +42,7 @@ gui.add(obj, 'height');
 gui.add(obj, 'numOfStates');
 gui.add(obj, 'cellSize');
 gui.add(obj, 'restart');
+gui.add(obj, 'destroy');
 let colorFolder = gui.addFolder('colors');
 colorFolder.addColor(obj, 'color0');
 colorFolder.addColor(obj, 'color1');
