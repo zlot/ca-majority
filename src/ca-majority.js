@@ -19,7 +19,7 @@ export default class CaMajority {
     this.state = 0;
     this.time = 0;
     if(typeof this.colors === 'undefined') {
-      throw new Error('A color array must be provided that has a length equal to numOfStates!');
+      throw new Error('An array of hex colors must be provided that has a length equal to numOfStates!');
     }
 
     console.time('compute');
