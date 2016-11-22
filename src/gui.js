@@ -17,6 +17,7 @@ export default class CaMajorityGUI {
     this.numOfStates = numOfStates;
     this.cellSize = cellSize;
     this.r = r;
+
     this.restart = function() {
       if(this.caMajority) {
         this.destroy();
@@ -34,8 +35,6 @@ export default class CaMajorityGUI {
     this.destroy = function() {
       this.caMajority.destroy();
     };
-
-    this.automaticColors = false;
 
     this.gui = new dat.gui.GUI();
     this.gui.remember(this);
