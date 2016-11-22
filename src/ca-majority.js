@@ -1,5 +1,4 @@
 import utils from './utils';
-import Color from 'color-js';
 
 export default class CaMajority {
 
