@@ -1,5 +1,3 @@
-'use strict';
-
 import dat from 'dat-gui';
 import Color from 'color-js';
 import CaMajority from './ca-majority';
