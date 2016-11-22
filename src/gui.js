@@ -22,12 +22,12 @@ export default class CaMajorityGUI {
         this.destroy();
       }
       this.caMajority = new CaMajority({
-        width,
-        height,
-        numOfStates,
-        cellSize,
-        r,
         colors: Object.values(this.colors) // convert to array
+        width: this.width,
+        height: this.height,
+        numOfStates: this.numOfStates,
+        cellSize: this.cellSize,
+        r: this.r,
       });
       this.caMajority.run();
     };
@@ -37,6 +37,7 @@ export default class CaMajorityGUI {
 
     this.gui = new dat.gui.GUI();
     this.gui.remember(this);
+
     this.gui.add(this, 'width').min(0);
     this.gui.add(this, 'height').min(0);
     this.gui.add(this, 'numOfStates').min(2).onFinishChange(this.reloadColorSelection.bind(this));
