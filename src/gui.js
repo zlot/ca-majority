@@ -18,23 +18,6 @@ export default class CaMajorityGUI {
     this.r = r;
     this.getColors = this.getColors.bind(this);
 
-    this.restart = function() {
-      if(this.caMajority) {
-        this.destroy();
-      }
-      this.caMajority = new CaMajority({
-        width: this.width,
-        height: this.height,
-        numOfStates: this.numOfStates,
-        cellSize: this.cellSize,
-        r: this.r,
-        colors: this.getColors()
-      });
-      this.caMajority.run();
-    };
-    this.destroy = function() {
-      this.caMajority.destroy();
-    };
     setupGUI.call(this);
     function setupGUI() {
       this.gui = new dat.gui.GUI();
@@ -58,6 +41,19 @@ export default class CaMajorityGUI {
     }
   }
 
+  restart() {
+    if(this.caMajority) {
+      this.destroy();
+    }
+    this.caMajority = new CaMajority({
+      width: this.width,
+      height: this.height,
+      numOfStates: this.numOfStates,
+      cellSize: this.cellSize,
+      r: this.r,
+      colors: this.getColors()
+    });
+    this.caMajority.run();
   }
 
   reloadColorSelection() {
