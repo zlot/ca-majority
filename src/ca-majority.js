@@ -8,7 +8,9 @@ export default class CaMajority {
     height = 8,
     numOfStates = 12,
     cellSize = 1,
-    r = 2
+    r = 2,
+    automaticColors = true,
+    colors = []
   } = {}) {
     this.width = width;
     this.height = height;
@@ -18,6 +20,14 @@ export default class CaMajority {
     this.state = 0;
     this.time = 0;
 
+    this.colors = colors;
+    if(automaticColors) {
+      for(let i=0; i<this.numOfStates; i++) {
+        this.colors.push(
+          Color('#ff0000').shiftHue(i * Math.floor(360/this.numOfStates))
+        );
+      }
+    }
     console.time('compute');
     console.log('%cStarted timer', 'font-size: 12px; text-decoration: underline; color: green');
 
@@ -75,11 +85,10 @@ export default class CaMajority {
     this.worker.postMessage({});
   }
 
-
   render() {
     for(let y=0; y<this.height; y++) {
       for(let x=0; x<this.width; x++) {
-        let fillStyle = Color('#ff0000').shiftHue(this.config[y][x] * Math.floor(360/this.numOfStates));
+        let fillStyle = this.colors[this.config[y][x]];
         this.ctx.fillStyle = fillStyle;
         this.ctx.fillRect(x*this.cellSize, y*this.cellSize, this.cellSize, this.cellSize);
       }
