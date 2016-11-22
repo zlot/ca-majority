@@ -16,27 +16,19 @@ export default class CaMajorityGUI {
     this.numOfStates = numOfStates;
     this.cellSize = cellSize;
     this.r = r;
+    this.getColors = this.getColors.bind(this);
 
     this.restart = function() {
       if(this.caMajority) {
         this.destroy();
       }
-      function getColors() {
-        let colorsArray = [];
-        for(let key in this) {
-          if(key.match(/color\d+/)) {
-            colorsArray.push(this[key]);
-          }
-        }
-        return colorsArray;
-      };
       this.caMajority = new CaMajority({
         width: this.width,
         height: this.height,
         numOfStates: this.numOfStates,
         cellSize: this.cellSize,
         r: this.r,
-        colors: getColors.call(this)
+        colors: this.getColors()
       });
       this.caMajority.run();
     };
@@ -69,23 +61,29 @@ export default class CaMajorityGUI {
       this.colorFolder.remove(color);
     });
     this.colorControllers = [];
-
-    let colorsToRemove = [];
-    for(let key in this) {
-      if(key.match(/color\d+/)) {
-        colorsToRemove.push(key);
-      }
-    }
-    colorsToRemove.forEach(key => {
-      delete this[key];
-    });
+    this._removeColors();
     for(let i=0; i<this.numOfStates; i++) {
       this[`color${i}`] = getEquallySpacedColor.call(this, i);
       this.colorControllers.push(this.colorFolder.addColor(this, `color${i}`));
     }
-
     function getEquallySpacedColor(i=0) {
       return Color('#ff0000').shiftHue(i * Math.floor(360/this.numOfStates)).toCSS();
     }
+  }
+
+  getColors() {
+    let colorsArray = [];
+    for(let key in this) {
+      if(key.match(/color\d+/)) {
+        colorsArray.push(this[key]);
+      }
+    }
+    return colorsArray;
+  }
+
+  _removeColors() {
+    this.getColors().forEach(key => {
+      delete this[key];
+    });
   }
 }
