@@ -8,17 +8,19 @@ export default class CaMajority {
     numOfStates = 12,
     cellSize = 1,
     r = 2,
-    colors = []
+    colors = undefined
   } = {}) {
     this.width = width;
     this.height = height;
     this.numOfStates = numOfStates;
-    this.r = r; // todo:: what is r?
     this.cellSize = cellSize;
+    this.r = r; // todo:: what is r?
+    this.colors = colors;
     this.state = 0;
     this.time = 0;
-
-    this.colors = colors;
+    if(typeof this.colors === 'undefined') {
+      throw new Error('A color array must be provided that has a length equal to numOfStates!');
+    }
 
     console.time('compute');
     console.log('%cStarted timer', 'font-size: 12px; text-decoration: underline; color: green');
