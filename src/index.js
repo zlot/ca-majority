@@ -4,7 +4,7 @@ import CaMajority from './ca-majority';
 
 const gui = new dat.gui.GUI();
 
-var obj = {
+var opts = {
     width: 256,
     height: 128,
     numOfStates: 12,
@@ -31,14 +31,14 @@ var obj = {
 };
 
 gui.remember(obj);
-gui.add(obj, 'width').min(0);
-gui.add(obj, 'height').min(0);
-gui.add(obj, 'numOfStates').min(2).onFinishChange(reloadColorSelection);
-gui.add(obj, 'cellSize').min(1);
-gui.add(obj, 'r').min(1).step(1);
-gui.add(obj, 'restart');
-gui.add(obj, 'destroy');
-gui.add(obj, 'reloadColorSelection');
+gui.add(opts, 'width').min(0);
+gui.add(opts, 'height').min(0);
+gui.add(opts, 'numOfStates').min(2).onFinishChange(reloadColorSelection);
+gui.add(opts, 'cellSize').min(1);
+gui.add(opts, 'r').min(1).step(1);
+gui.add(opts, 'restart');
+gui.add(opts, 'destroy');
+gui.add(opts, 'reloadColorSelection');
 let colorFolder = gui.addFolder('colors');
 colorFolder.open();
 
