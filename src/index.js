@@ -27,37 +27,36 @@ var obj = {
       x.destroy();
     },
     automaticColors: false,
+    reloadColorSelection
 };
 
 gui.remember(obj);
 gui.add(obj, 'width').min(0);
 gui.add(obj, 'height').min(0);
-gui.add(obj, 'numOfStates').min(2).onFinishChange(reloadGuiColorSelection);
+gui.add(obj, 'numOfStates').min(2).onFinishChange(reloadColorSelection);
 gui.add(obj, 'cellSize').min(1);
 gui.add(obj, 'restart');
 gui.add(obj, 'destroy');
-gui.add(obj, 'automaticColors');
+gui.add(obj, 'reloadColorSelection');
 let colorFolder = gui.addFolder('colors');
 colorFolder.open();
 
 let colorControllers = [];
 let colors = {};
 
-reloadGuiColorSelection();
+reloadColorSelection();
 
 let x = new CaMajority({
   width: 256,
   height: 128,
   numOfStates: 12,
   cellSize: 2,
-  automaticColors: true,
   colors: Object.values(colors) // convert to array
 });
 x.run();
 
 
-
-function reloadGuiColorSelection() {
+function reloadColorSelection() {
   colorControllers.forEach(color => {
     colorFolder.remove(color);
   });

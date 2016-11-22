@@ -9,7 +9,6 @@ export default class CaMajority {
     numOfStates = 12,
     cellSize = 1,
     r = 2,
-    automaticColors = true,
     colors = []
   } = {}) {
     this.width = width;
@@ -21,13 +20,7 @@ export default class CaMajority {
     this.time = 0;
 
     this.colors = colors;
-    if(automaticColors) {
-      for(let i=0; i<this.numOfStates; i++) {
-        this.colors.push(
-          Color('#ff0000').shiftHue(i * Math.floor(360/this.numOfStates))
-        );
-      }
-    }
+
     console.time('compute');
     console.log('%cStarted timer', 'font-size: 12px; text-decoration: underline; color: green');
 
