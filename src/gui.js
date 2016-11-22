@@ -9,8 +9,7 @@ export default class CaMajorityGUI {
     height = 8,
     numOfStates = 12,
     cellSize = 1,
-    r = 2,
-    colors = undefined
+    r = 2
   } = {}) {
     this.width = width;
     this.height = height;
