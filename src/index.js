@@ -11,6 +11,7 @@ var obj = {
     height: 128,
     numOfStates: 12,
     cellSize: 2,
+    r: 2,
     restart: function() {
       this.destroy();
       x = new CaMajority({
@@ -18,6 +19,7 @@ var obj = {
         height: this.height,
         numOfStates: this.numOfStates,
         cellSize: this.cellSize,
+        r: this.r,
         automaticColors: this.automaticColors,
         colors: Object.values(colors) // convert to array
       });
@@ -35,6 +37,7 @@ gui.add(obj, 'width').min(0);
 gui.add(obj, 'height').min(0);
 gui.add(obj, 'numOfStates').min(2).onFinishChange(reloadColorSelection);
 gui.add(obj, 'cellSize').min(1);
+gui.add(obj, 'r').min(1).step(1);
 gui.add(obj, 'restart');
 gui.add(obj, 'destroy');
 gui.add(obj, 'reloadColorSelection');
