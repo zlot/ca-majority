@@ -35,25 +35,29 @@ export default class CaMajorityGUI {
     this.destroy = function() {
       this.caMajority.destroy();
     };
+    setupGUI.call(this);
+    function setupGUI() {
+      this.gui = new dat.gui.GUI();
+      this.gui.remember(this);
 
-    this.gui = new dat.gui.GUI();
-    this.gui.remember(this);
+      this.gui.add(this, 'width').min(0);
+      this.gui.add(this, 'height').min(0);
+      this.gui.add(this, 'numOfStates').min(2).onFinishChange(this.reloadColorSelection.bind(this));
+      this.gui.add(this, 'cellSize').min(1);
+      this.gui.add(this, 'r').min(1).step(1);
+      this.gui.add(this, 'restart');
+      this.gui.add(this, 'destroy');
+      this.gui.add(this, 'reloadColorSelection');
 
-    this.gui.add(this, 'width').min(0);
-    this.gui.add(this, 'height').min(0);
-    this.gui.add(this, 'numOfStates').min(2).onFinishChange(this.reloadColorSelection.bind(this));
-    this.gui.add(this, 'cellSize').min(1);
-    this.gui.add(this, 'r').min(1).step(1);
-    this.gui.add(this, 'restart');
-    this.gui.add(this, 'destroy');
-    this.gui.add(this, 'reloadColorSelection');
+      this.colorFolder = this.gui.addFolder('colors');
+      this.colorFolder.open();
 
-    this.colorFolder = this.gui.addFolder('colors');
-    this.colorFolder.open();
+      this.colorControllers = [];
+      this.reloadColorSelection();
+      this.restart();
+    }
+  }
 
-    this.colorControllers = [];
-    this.reloadColorSelection();
-    this.restart();
   }
 
   reloadColorSelection() {
