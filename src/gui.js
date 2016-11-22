@@ -56,6 +56,10 @@ export default class CaMajorityGUI {
     this.caMajority.run();
   }
 
+  destroy() {
+    this.caMajority.destroy();
+  };
+
   reloadColorSelection() {
     this.colorControllers.forEach(color => {
       this.colorFolder.remove(color);
