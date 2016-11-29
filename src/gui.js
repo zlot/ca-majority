@@ -30,7 +30,7 @@ export default class CaMajorityGUI {
       this.gui.add(this, 'numOfStates').min(2).onFinishChange(this.reloadColorSelection.bind(this));
       this.gui.add(this, 'cellSize').min(1);
       this.gui.add(this, 'r').min(1).step(1);
-      this.gui.add(this, 'frameRate').min(1).step(1);
+      this.gui.add(this, 'frameRate').min(1).max(60).step(1);
       this.gui.add(this, 'restart');
       this.gui.add(this, 'destroy');
       this.gui.add(this, 'reloadColorSelection');
