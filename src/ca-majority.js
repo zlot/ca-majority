@@ -38,7 +38,20 @@ export default class CaMajority {
       numOfStates: this.numOfStates,
       r: this.r,
       time: this.time
-    })
+    });
+
+    this.worker.onmessage = function workerMessage(e) {
+      this.time = e.data.time;
+      this.config = e.data.config;
+      this.render();
+      // if(this.time < 8) {
+      //   console.log('time: ', this.time);
+      //   window.requestAnimationFrame(this.step.bind(this));
+      // } else {
+      //   console.log('%cSTOPPED', 'font-size: 24px; text-decoration: underline; color: blue');
+      //   console.timeEnd('compute');
+      // }
+    }.bind(this);
 
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
@@ -61,18 +74,23 @@ export default class CaMajority {
   }
 
   run() {
-    this.worker.onmessage = function workerMessage(e) {
-      this.time = e.data.time;
-      this.config = e.data.config;
-      this.render();
-      if(this.time < 8) {
-        console.log('time: ', this.time);
+    let fps = 12;
+    this.intervalId = window.setInterval(() => {
         window.requestAnimationFrame(this.step.bind(this));
-      } else {
-        console.log('%cSTOPPED', 'font-size: 24px; text-decoration: underline; color: blue');
-        console.timeEnd('compute');
-      }
-    }.bind(this);
+    }, 1000/fps);
+
+    // this.worker.onmessage = function workerMessage(e) {
+    //   this.time = e.data.time;
+    //   this.config = e.data.config;
+    //   this.render();
+    //   if(this.time < 8) {
+    //     console.log('time: ', this.time);
+    //     window.requestAnimationFrame(this.step.bind(this));
+    //   } else {
+    //     console.log('%cSTOPPED', 'font-size: 24px; text-decoration: underline; color: blue');
+    //     console.timeEnd('compute');
+    //   }
+    // }.bind(this);
   }
 
   step() {
