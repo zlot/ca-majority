@@ -46,13 +46,6 @@ export default class CaMajority {
       this.time = e.data.time;
       this.config = e.data.config;
       this.render();
-      // if(this.time < 8) {
-      //   console.log('time: ', this.time);
-      //   window.requestAnimationFrame(this.step.bind(this));
-      // } else {
-      //   console.log('%cSTOPPED', 'font-size: 24px; text-decoration: underline; color: blue');
-      //   console.timeEnd('compute');
-      // }
     }.bind(this);
 
     this.canvas = document.createElement('canvas');
