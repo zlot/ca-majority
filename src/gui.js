@@ -32,6 +32,7 @@ export default class CaMajorityGUI {
       this.gui.add(this, 'r').min(1).step(1);
       this.gui.add(this, 'frameRate').min(1).max(60).step(1);
       this.gui.add(this, 'restart');
+      this.gui.add(this, 'stop');
       this.gui.add(this, 'destroy');
       this.gui.add(this, 'reloadColorSelection');
 
@@ -58,6 +59,10 @@ export default class CaMajorityGUI {
       colors: this.getColors()
     });
     this.caMajority.run();
+  }
+
+  stop() {
+    this.caMajority.stop();
   }
 
   destroy() {
