@@ -101,6 +101,10 @@ export default class CaMajority {
 
   destroy() {
     this.stop();
-    document.body.removeChild(this.canvas);
+    try {
+        document.body.removeChild(this.canvas);
+    } catch(ex) {
+      // continue
+    }
   }
 }
