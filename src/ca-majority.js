@@ -79,7 +79,10 @@ export default class CaMajority {
     this.intervalId = window.setInterval(() => {
         window.requestAnimationFrame(this.step.bind(this));
     }, 1000/this.frameRate);
+  }
 
+  stop() {
+    window.clearInterval(this.intervalId);
   }
 
   step() {
