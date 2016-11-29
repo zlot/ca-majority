@@ -8,6 +8,7 @@ export default class CaMajority {
     numOfStates = 12,
     cellSize = 1,
     r = 2,
+    frameRate = 12,
     colors = undefined
   } = {}) {
     this.width = width;
@@ -15,6 +16,7 @@ export default class CaMajority {
     this.numOfStates = numOfStates;
     this.cellSize = cellSize;
     this.r = r; // todo:: what is r?
+    this.frameRate = frameRate;
     this.colors = colors;
     this.state = 0;
     this.time = 0;
@@ -74,10 +76,9 @@ export default class CaMajority {
   }
 
   run() {
-    let fps = 12;
     this.intervalId = window.setInterval(() => {
         window.requestAnimationFrame(this.step.bind(this));
-    }, 1000/fps);
+    }, 1000/this.frameRate);
 
   }
 

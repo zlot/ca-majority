@@ -9,13 +9,15 @@ export default class CaMajorityGUI {
     height = 8,
     numOfStates = 12,
     cellSize = 1,
-    r = 2
+    r = 2,
+    frameRate = 12
   } = {}) {
     this.width = width;
     this.height = height;
     this.numOfStates = numOfStates;
     this.cellSize = cellSize;
     this.r = r;
+    this.frameRate = frameRate;
     this.getColors = this.getColors.bind(this);
 
     setupGUI.call(this);
@@ -28,6 +30,7 @@ export default class CaMajorityGUI {
       this.gui.add(this, 'numOfStates').min(2).onFinishChange(this.reloadColorSelection.bind(this));
       this.gui.add(this, 'cellSize').min(1);
       this.gui.add(this, 'r').min(1).step(1);
+      this.gui.add(this, 'frameRate').min(1).step(1);
       this.gui.add(this, 'restart');
       this.gui.add(this, 'destroy');
       this.gui.add(this, 'reloadColorSelection');
@@ -51,6 +54,7 @@ export default class CaMajorityGUI {
       numOfStates: this.numOfStates,
       cellSize: this.cellSize,
       r: this.r,
+      frameRate: this.frameRate,
       colors: this.getColors()
     });
     this.caMajority.run();
