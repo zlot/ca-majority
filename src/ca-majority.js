@@ -50,8 +50,8 @@ export default class CaMajority {
 
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
-    this.ctx.canvas.width = window.innerWidth;
-    this.ctx.canvas.height = window.innerHeight;
+    this.ctx.canvas.width = this.width
+    this.ctx.canvas.height = this.height;
     document.body.appendChild(this.canvas);
   }
 
