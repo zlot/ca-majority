@@ -24,9 +24,6 @@ export default class CaMajority {
       throw new Error('An array of hex colors must be provided that has a length equal to numOfStates!');
     }
 
-    console.time('compute');
-    console.log('%cStarted timer', 'font-size: 12px; text-decoration: underline; color: green');
-
     this._initConfig();
 
     this.worker = new Worker('src/compute-step.js');
