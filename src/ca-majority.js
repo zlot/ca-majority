@@ -79,18 +79,6 @@ export default class CaMajority {
         window.requestAnimationFrame(this.step.bind(this));
     }, 1000/fps);
 
-    // this.worker.onmessage = function workerMessage(e) {
-    //   this.time = e.data.time;
-    //   this.config = e.data.config;
-    //   this.render();
-    //   if(this.time < 8) {
-    //     console.log('time: ', this.time);
-    //     window.requestAnimationFrame(this.step.bind(this));
-    //   } else {
-    //     console.log('%cSTOPPED', 'font-size: 24px; text-decoration: underline; color: blue');
-    //     console.timeEnd('compute');
-    //   }
-    // }.bind(this);
   }
 
   step() {
