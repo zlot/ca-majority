@@ -58,7 +58,6 @@ export default class CaMajorityGUI {
       frameRate: this.frameRate,
       colors: this.getColors()
     });
-    this.caMajority.run();
   }
 
   stop() {

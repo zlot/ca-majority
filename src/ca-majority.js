@@ -68,17 +68,16 @@ export default class CaMajority {
     }
   }
 
-  run() {
-    this.intervalId = window.setInterval(() => {
-        window.requestAnimationFrame(this.step.bind(this));
-    }, 1000/this.frameRate);
-  }
-
   stop() {
-    window.clearInterval(this.intervalId);
+    this.stopCaPromise = Promise.reject('CaMajority was stopped')
   }
 
   step() {
+    this.frameRatePromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve();
+        }, 1000/this.frameRate);
+    });
     this.worker.postMessage({});
   }
 
@@ -90,10 +89,12 @@ export default class CaMajority {
         this.ctx.fillRect(x*this.cellSize, y*this.cellSize, this.cellSize, this.cellSize);
       }
     }
+    Promise.all([this.frameRatePromise, this.stopCaPromise]).then(() => {
+      window.requestAnimationFrame(this.step.bind(this));
+    });
   }
 
   destroy() {
-    this.stop();
     try {
         document.body.removeChild(this.canvas);
     } catch(ex) {
